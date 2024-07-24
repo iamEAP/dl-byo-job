@@ -8,7 +8,13 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-function Seo({ description, title, children }) {
+type Props = {
+  children?: React.ReactNode
+  title: string
+  description?: string
+}
+
+function SEO({ description, title, children }: Props) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -42,4 +48,4 @@ function Seo({ description, title, children }) {
   )
 }
 
-export default Seo
+export default SEO
