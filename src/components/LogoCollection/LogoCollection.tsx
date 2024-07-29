@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography"
 import Grid from "@mui/material/Grid"
 import { useTheme } from "@mui/system"
 import { StaticImage } from "gatsby-plugin-image"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 
 const partners = [
   {
@@ -101,6 +102,7 @@ const partners = [
 ]
 
 export default function LogoCollection() {
+  const { t } = useTranslation()
   const theme = useTheme()
 
   return (
@@ -112,7 +114,7 @@ export default function LogoCollection() {
         style={{ margin: "0 auto" }}
         color="text.secondary"
       >
-        In partnership with
+        {t("partners_title")}
       </Typography>
       <Grid container justifyContent="center" sx={{ mt: 0.5, opacity: 0.6 }}>
         {partners.map(({ name, logoLight, logoDark }) => (

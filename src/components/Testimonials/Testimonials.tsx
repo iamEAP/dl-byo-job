@@ -10,8 +10,10 @@ import Grid from "@mui/material/Grid"
 import { useTheme } from "@mui/system"
 import { StaticImage } from "gatsby-plugin-image"
 import CTA from "../CTA/CTA"
+import { useTranslation } from "gatsby-plugin-react-i18next"
+import { TFunction } from "i18next"
 
-const userTestimonials = [
+const getTestimonials = ({ t }: { t: TFunction }) => [
   {
     avatar: (
       <Avatar>
@@ -19,7 +21,7 @@ const userTestimonials = [
       </Avatar>
     ),
     name: "Eric",
-    occupation: "Software Engineer",
+    occupation: t("testimonial_eric_occupation"),
     companyLogoLight: (
       <StaticImage
         src="../../images/testimonials/FPO-spotify.png"
@@ -40,8 +42,7 @@ const userTestimonials = [
         imgStyle={{ filter: "invert(1)", objectFit: "contain" }}
       />
     ),
-    testimonial:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id vulputate urna, laoreet facilisis metus. Integer egestas accumsan pharetra.",
+    testimonial: t("testimonial_eric_quote"),
   },
   {
     avatar: (
@@ -53,7 +54,7 @@ const userTestimonials = [
       </Avatar>
     ),
     name: "Kajsa",
-    occupation: "Civil Engineer",
+    occupation: t("testimonial_kajsa_occupation"),
     companyLogoLight: (
       <StaticImage
         src="../../images/testimonials/FPO-creanova.png"
@@ -74,8 +75,7 @@ const userTestimonials = [
         imgStyle={{ filter: "invert(1)", objectFit: "contain" }}
       />
     ),
-    testimonial:
-      "Vivamus quis urna a sapien sollicitudin elementum a eget eros. Phasellus semper libero justo, in dignissim ante aliquet sit amet. Duis sollicitudin accumsan libero sit amet vestibulum.",
+    testimonial: t("testimonial_kajsa_quote"),
   },
   {
     avatar: (
@@ -87,7 +87,7 @@ const userTestimonials = [
       </Avatar>
     ),
     name: "Linus",
-    occupation: "Designer",
+    occupation: t("testimonial_linus_occupation"),
     companyLogoLight: (
       <StaticImage
         src="../../images/testimonials/FPO-akqa.png"
@@ -108,37 +108,14 @@ const userTestimonials = [
         imgStyle={{ filter: "invert(1)", objectFit: "contain" }}
       />
     ),
-    testimonial:
-      "Aliquam sodales est non justo feugiat, eget mollis ante pellentesque. Pellentesque id tortor sit amet libero euismod rutrum id sit amet est.",
+    testimonial: t("testimonial_linus_quote"),
   },
 ]
 
-const whiteLogos = [
-  "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560628e8573c43893fe0ace_Sydney-white.svg",
-  "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f4d520d0517ae8e8ddf13_Bern-white.svg",
-  "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f46794c159024c1af6d44_Montreal-white.svg",
-  "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e891fa22f89efd7477a_TerraLight.svg",
-  "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560a09d1f6337b1dfed14ab_colorado-white.svg",
-  "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f5caa77bf7d69fb78792e_Ankara-white.svg",
-]
-
-const darkLogos = [
-  "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560628889c3bdf1129952dc_Sydney-black.svg",
-  "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f4d4d8b829a89976a419c_Bern-black.svg",
-  "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f467502f091ccb929529d_Montreal-black.svg",
-  "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e911fa22f2203d7514c_TerraDark.svg",
-  "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560a0990f3717787fd49245_colorado-black.svg",
-  "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f5ca4e548b0deb1041c33_Ankara-black.svg",
-]
-
-const logoStyle = {
-  width: "64px",
-  opacity: 0.3,
-}
-
 export default function Testimonials() {
   const theme = useTheme()
-  const logos = theme.palette.mode === "light" ? darkLogos : whiteLogos
+  const { t } = useTranslation()
+  const userTestimonials = getTestimonials({ t })
 
   return (
     <Container
@@ -160,11 +137,10 @@ export default function Testimonials() {
         }}
       >
         <Typography component="h2" variant="h4" color="text.primary">
-          Real People
+          {t("testimonials_title")}
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          When you move to Dals Långed, you won't be alone. Hear from a few
-          remote workers who made the leap and now call Långed home.
+          {t("testimonials_subtext")}
         </Typography>
       </Box>
       <Grid container spacing={2}>

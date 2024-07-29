@@ -6,8 +6,12 @@ import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import { StaticImage } from "gatsby-plugin-image"
 import CTA from "../CTA/CTA"
+import { Trans, useTranslation } from "gatsby-plugin-react-i18next"
+import LangSwitcher from "../LangSwitcher/LangSwitcher"
 
 export default function Hero() {
+  const { t } = useTranslation()
+
   return (
     <Box
       id="hero"
@@ -21,6 +25,7 @@ export default function Hero() {
         backgroundRepeat: "no-repeat",
       })}
     >
+      <LangSwitcher />
       <Box
         id="image"
         sx={theme => ({
@@ -72,20 +77,22 @@ export default function Hero() {
               fontSize: "clamp(2rem, 9vw, 3.5rem)",
             }}
           >
-            Bring&nbsp;
-            <Typography
-              component="span"
-              variant="h1"
-              sx={{
-                fontSize: "clamp(2rem, 9vw, 3.5rem)",
-                color: theme =>
-                  theme.palette.mode === "light"
-                    ? "primary.main"
-                    : "primary.light",
-              }}
-            >
-              your own job
-            </Typography>
+            <Trans i18nKey="hero_title">
+              Bring&nbsp;
+              <Typography
+                component="span"
+                variant="h1"
+                sx={{
+                  fontSize: "clamp(2rem, 9vw, 3.5rem)",
+                  color: theme =>
+                    theme.palette.mode === "light"
+                      ? "primary.main"
+                      : "primary.light",
+                }}
+              >
+                your own job
+              </Typography>
+            </Trans>
           </Typography>
           <Typography
             variant="h2"
@@ -97,28 +104,29 @@ export default function Hero() {
               fontSize: "clamp(2rem, 9vw, 3.5rem)",
             }}
           >
-            Discover&nbsp;
-            <Typography
-              component="span"
-              variant="h2"
-              sx={{
-                fontSize: "clamp(2rem, 9vw, 3.5rem)",
-                color: theme =>
-                  theme.palette.mode === "light"
-                    ? "primary.main"
-                    : "primary.light",
-              }}
-            >
-              your new life
-            </Typography>
+            <Trans i18nKey="hero_subtitle">
+              Discover&nbsp;
+              <Typography
+                component="span"
+                variant="h2"
+                sx={{
+                  fontSize: "clamp(2rem, 9vw, 3.5rem)",
+                  color: theme =>
+                    theme.palette.mode === "light"
+                      ? "primary.main"
+                      : "primary.light",
+                }}
+              >
+                your new life
+              </Typography>
+            </Trans>
           </Typography>
           <Typography
             textAlign="center"
             color="text.secondary"
             sx={{ alignSelf: "center", width: { sm: "100%", md: "80%" } }}
           >
-            Work from home in Dals Långed, where something something close to
-            nature, living society, cultural life, etc.
+            {t("hero_subtext")}
           </Typography>
           <CTA />
           {/* <Typography variant="caption" textAlign="center" sx={{ opacity: 0.8 }}>

@@ -12,8 +12,10 @@ import PeopleIcon from "@mui/icons-material/People"
 import MusicNoteIcon from "@mui/icons-material/MusicNote"
 import SchoolIcon from "@mui/icons-material/School"
 import { StaticImage } from "gatsby-plugin-image"
+import { useTranslation } from "gatsby-plugin-react-i18next"
+import { TFunction } from "i18next"
 
-const items = [
+const getItems = ({ t }: { t: TFunction }) => [
   {
     image: (
       <StaticImage
@@ -26,9 +28,8 @@ const items = [
       />
     ),
     icon: <PeopleIcon />,
-    title: "Wood-Fired Sauna",
-    description:
-      "Beautifully located on the shore of Dalsland's canal, residents of all backgrounds meet here for a steam and a soak in the lake.",
+    title: "Långeds Allmänna Bastu",
+    description: t("highlight_bastu_description"),
   },
   {
     image: (
@@ -43,8 +44,7 @@ const items = [
     ),
     icon: <SchoolIcon />,
     title: "Campus Steneby",
-    description:
-      "Undergrad and graduate programs in design, textiles, metal, woodworking, and more are offered by Stenebyskolan and Gothenburg University.",
+    description: t("highlight_steneby_description"),
   },
   {
     image: (
@@ -59,8 +59,7 @@ const items = [
     ),
     icon: <FactoryIcon />,
     title: "Not Quite",
-    description:
-      "A former paper mill turned artist haven offering events and exhibits, a cafe, and bakery, just 15 minutes from Långed.",
+    description: t("highlight_notquite_description"),
   },
   {
     image: (
@@ -75,8 +74,7 @@ const items = [
     ),
     icon: <DirectionsBikeIcon />,
     title: "Cykla Gul",
-    description:
-      "A bikeshare program improving mobility and connections within the town and municipality.",
+    description: t("highlight_cyklagul_description"),
   },
   {
     image: (
@@ -91,8 +89,7 @@ const items = [
     ),
     icon: <CheckroomIcon />,
     title: "Långeds Garderob",
-    description:
-      "A second-hand shop and non-profit focused on social and environmental sustainability.",
+    description: t("highlight_garderob_description"),
   },
   {
     image: (
@@ -107,12 +104,14 @@ const items = [
     ),
     icon: <MusicNoteIcon />,
     title: "Decibel",
-    description:
-      "A music rehearsal space with focus on providing youth with fun opportunities beyond just sports and video games.",
+    description: t("highlight_decibel_description"),
   },
 ]
 
 export default function Highlights() {
+  const { t } = useTranslation()
+  const items = getItems({ t })
+
   return (
     <Box
       id="highlights"
@@ -139,10 +138,10 @@ export default function Highlights() {
           }}
         >
           <Typography component="h2" variant="h4">
-            More to Do
+            {t("highlights_title")}
           </Typography>
           <Typography variant="body1" sx={{ color: "grey.400" }}>
-            Dals Långed is no ordinary rural Swedish village.
+            {t("highlights_subtext")}
           </Typography>
         </Box>
         <Grid container spacing={2.5}>

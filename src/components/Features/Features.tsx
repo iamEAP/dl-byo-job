@@ -13,6 +13,8 @@ import CelebrationIcon from "@mui/icons-material/Celebration"
 import HouseIcon from "@mui/icons-material/House"
 import WorkIcon from "@mui/icons-material/Work"
 import { StaticImage } from "gatsby-plugin-image"
+import { useTranslation } from "gatsby-plugin-react-i18next"
+import { TFunction } from "i18next"
 
 type Item = {
   icon: JSX.Element
@@ -21,16 +23,15 @@ type Item = {
   image: JSX.Element
 }
 
-const items: Item[] = [
+const getItems = ({ t }: { t: TFunction }): Item[] => [
   {
     icon: <HouseIcon />,
-    title: "Live",
-    description:
-      "Surround yourself in the forests and lakes of West Sweden, with hiking trails and nature reserves right outside your front door.",
+    title: t("feature_live_title"),
+    description: t("feature_live_description"),
     image: (
       <StaticImage
         src="../../images/FPO-hiking.png"
-        alt="Explore the nature around Dals Långed"
+        alt={t("feature_live_image_alt")}
         loading="lazy"
         formats={["auto", "webp", "avif"]}
         quality={95}
@@ -43,13 +44,12 @@ const items: Item[] = [
   },
   {
     icon: <WorkIcon />,
-    title: "Work",
-    description:
-      "Work in solitude with fiber direct to your home, or work in community at Långed's coworking space, Studio Växt.",
+    title: t("feature_work_title"),
+    description: t("feature_work_description"),
     image: (
       <StaticImage
         src="../../images/FPO-vaxt.jpg"
-        alt="Work at this desk at Studio Växt"
+        alt={t("feature_work_image_alt")}
         loading="lazy"
         formats={["auto", "webp", "avif"]}
         quality={95}
@@ -62,13 +62,12 @@ const items: Item[] = [
   },
   {
     icon: <CelebrationIcon />,
-    title: "Play",
-    description:
-      "Living in the countryside doesn't mean leaving culture behind. The annual Skogsfesten music festival is just one of many cultural events throughout the year.",
+    title: t("feature_play_title"),
+    description: t("feature_play_description"),
     image: (
       <StaticImage
         src="../../images/FPO-skogsfesten.jpg"
-        alt="Dance at the annual Skogsfesten music festival"
+        alt={t("feature_play_image_alt")}
         loading="lazy"
         formats={["auto", "webp", "avif"]}
         quality={95}
@@ -82,6 +81,8 @@ const items: Item[] = [
 ]
 
 export default function Features() {
+  const { t } = useTranslation()
+  const items = getItems({ t })
   const [selectedItemIndex, setSelectedItemIndex] = React.useState(0)
 
   const handleItemClick = (index: number) => {
@@ -96,14 +97,14 @@ export default function Features() {
         <Grid item xs={12} md={6}>
           <div>
             <Typography component="h2" variant="h4" color="text.primary">
-              Imagine yourself in Dals Långed
+              {t("features_title")}
             </Typography>
             <Typography
               variant="body1"
               color="text.secondary"
               sx={{ mb: { xs: 2, sm: 4 } }}
             >
-              There's more to life than the todo list at your job.
+              {t("features_subtext")}
             </Typography>
           </div>
           <Grid
@@ -174,7 +175,7 @@ export default function Features() {
                   "&:hover > svg": { transform: "translateX(2px)" },
                 }}
               >
-                <span>Picture it</span>
+                <span>{t("features_cta")}</span>
                 <ChevronRightRoundedIcon
                   fontSize="small"
                   sx={{ mt: "1px", ml: "2px" }}
@@ -270,7 +271,7 @@ export default function Features() {
                         event.stopPropagation()
                       }}
                     >
-                      <span>Picture it</span>
+                      <span>{t("features_cta")}</span>
                       <ChevronRightRoundedIcon
                         fontSize="small"
                         sx={{ mt: "1px", ml: "2px" }}

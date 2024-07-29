@@ -7,12 +7,13 @@ import Typography from "@mui/material/Typography"
 
 import InstagramIcon from "@mui/icons-material/Instagram"
 import FacebookIcon from "@mui/icons-material/Facebook"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 
 function Copyright() {
+  const { t } = useTranslation()
   return (
     <Typography variant="body2" color="text.secondary" mt={1}>
-      {"Copyright © "}
-      {new Date().getFullYear()}
+      {t("footer_copyright", { year: new Date().getFullYear() })}
     </Typography>
   )
 }

@@ -1,8 +1,11 @@
 import React from "react"
 import Button from "@mui/material/Button"
 import Stack from "@mui/material/Stack"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 
 const CTA = () => {
+  const { t } = useTranslation()
+
   return (
     <Stack
       direction={{ xs: "column", sm: "row" }}
@@ -24,7 +27,7 @@ const CTA = () => {
     }}
   /> */}
       <Button variant="contained" color="primary">
-        Chat with a real resident
+        {t("cta_primary")}
       </Button>
     </Stack>
   )

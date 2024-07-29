@@ -11,6 +11,8 @@ import FAQ from "../components/FAQ/FAQ"
 import { createTheme, ThemeProvider, useMediaQuery } from "@mui/material"
 import SEO from "../components/SEO/SEO"
 import Footer from "../components/Footer/Footer"
+import { useTranslation } from "gatsby-plugin-react-i18next"
+import { graphql } from "gatsby"
 
 const useTheme = () => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
@@ -28,9 +30,11 @@ const useTheme = () => {
 }
 
 export default function LandingPage() {
+  const { t } = useTranslation()
   const theme = useTheme()
   return (
     <ThemeProvider theme={theme}>
+      <SEO title={t("html_page_title")} />
       <CssBaseline />
       <Hero />
       <Box sx={{ bgcolor: "background.default" }}>
@@ -49,9 +53,16 @@ export default function LandingPage() {
   )
 }
 
-/**
- * Head export to define metadata for the page
- *
- * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
- */
-export const Head = () => <SEO title="Find Your Home" />
+export const query = graphql`
+  query {
+    locales: allLocale(filter: { ns: { in: ["index"] } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`
