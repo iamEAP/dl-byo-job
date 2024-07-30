@@ -8,15 +8,22 @@ import Typography from "@mui/material/Typography"
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import { Trans, useTranslation } from "gatsby-plugin-react-i18next"
+import { useAnalytics } from "../../hooks/useAnalytics"
 
 export default function FAQ() {
+  const { captureEvent } = useAnalytics()
   const { t } = useTranslation()
   const [expanded, setExpanded] = React.useState<string | false>(false)
 
-  const handleChange =
+  const handleChange = React.useCallback(
     (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false)
-    }
+      if (isExpanded) {
+        captureEvent({ action: "click", options: { link_id: `faq_${panel}` } })
+      }
+    },
+    [captureEvent, setExpanded]
+  )
 
   return (
     <Container

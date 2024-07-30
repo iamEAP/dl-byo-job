@@ -41,6 +41,22 @@ module.exports = {
         icon: `src/images/FPO-favicon.png`, // This path is relative to the root of the site.
       },
     },
+    // Cookies and tracking below
+    {
+      resolve: `gatsby-plugin-gdpr-cookies`,
+      options: {
+        googleAnalytics: {
+          trackingId: "G-12PX0L5Z23",
+          cookieName: "consent-to-all",
+          anonymize: false,
+          allowAdFeatures: false,
+        },
+        // linkedin: {
+        //   trackingId: 'YOUR_LINKEDIN_TRACKING_ID',
+        //   cookieName: 'consent-li',
+        // },
+      },
+    },
     // SEO stuff below
     {
       resolve: "gatsby-plugin-robots-txt",

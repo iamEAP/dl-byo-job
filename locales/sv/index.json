@@ -42,5 +42,8 @@
   "faq_transit_question": "Hur är kommunikationen kring Dals Långed? Behöver jag en bil för att överleva?",
   "faq_transit_answer": "<0>Du hittar alla livets väsentligheter lätt tillgängliga inom gångavstånd i byn (en livsmedelsbutik, posttjänster, enkla restauranger, etc). Det finns en direkt (om sällsynt) bussförbindelse till Åmål, varifrån du kan ta dig var som helst i Sverige via järnvägsnätet.</0><1>Även om det finns några i byn som kan leva bekvämt utan ett personligt fordon, kan du tycka att det är lättare och bekvämare att äga en bil för enstaka resor utanför Långed. Om du har körkort men ingen bil finns det också ett lokalt bildelningsprogram du kan dra nytta av.</1>",
   "partners_title": "I samarbete med",
-  "footer_copyright": "Copyright © {{year}}"
+  "footer_copyright": "Copyright © {{year}}",
+  "cookie_consent_message": "Vi använder cookies för att mäta framgången för denna sida.",
+  "cookie_consent_accept": "Godkänna",
+  "cookie_consent_reject": "Tacka Nej"
 }

@@ -1,10 +1,16 @@
-import React from "react"
+import React, { useCallback } from "react"
 import Button from "@mui/material/Button"
 import Stack from "@mui/material/Stack"
 import { useTranslation } from "gatsby-plugin-react-i18next"
+import { useAnalytics } from "../../hooks/useAnalytics"
 
 const CTA = () => {
+  const { captureEvent } = useAnalytics()
   const { t } = useTranslation()
+
+  const handleClick = useCallback(() => {
+    captureEvent({ action: "click", options: { link_id: "primary_cta" } })
+  }, [captureEvent])
 
   return (
     <Stack
@@ -26,7 +32,7 @@ const CTA = () => {
       'aria-label': 'Enter your email address',
     }}
   /> */}
-      <Button variant="contained" color="primary">
+      <Button variant="contained" color="primary" onClick={handleClick}>
         {t("cta_primary")}
       </Button>
     </Stack>

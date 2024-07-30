@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography"
 import { StaticImage } from "gatsby-plugin-image"
 import CTA from "../CTA/CTA"
 import { Trans, useTranslation } from "gatsby-plugin-react-i18next"
-import LangSwitcher from "../LangSwitcher/LangSwitcher"
 
 export default function Hero() {
   const { t } = useTranslation()
@@ -25,7 +24,6 @@ export default function Hero() {
         backgroundRepeat: "no-repeat",
       })}
     >
-      <LangSwitcher />
       <Box
         id="image"
         sx={theme => ({

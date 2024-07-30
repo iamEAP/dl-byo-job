@@ -13,6 +13,8 @@ import SEO from "../components/SEO/SEO"
 import Footer from "../components/Footer/Footer"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { graphql } from "gatsby"
+import LangSwitcher from "../components/LangSwitcher/LangSwitcher"
+import CookieConsent from "../components/CookieConsent/CookieConsent"
 
 const useTheme = () => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
@@ -36,6 +38,7 @@ export default function LandingPage() {
     <ThemeProvider theme={theme}>
       <SEO title={t("html_page_title")} />
       <CssBaseline />
+      <LangSwitcher />
       <Hero />
       <Box sx={{ bgcolor: "background.default" }}>
         <Divider />
@@ -48,6 +51,7 @@ export default function LandingPage() {
         <FAQ />
         <LogoCollection />
         <Footer />
+        <CookieConsent />
       </Box>
     </ThemeProvider>
   )

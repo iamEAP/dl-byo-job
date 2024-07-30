@@ -15,6 +15,7 @@ import WorkIcon from "@mui/icons-material/Work"
 import { StaticImage } from "gatsby-plugin-image"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { TFunction } from "i18next"
+import { useAnalytics } from "../../hooks/useAnalytics"
 
 type Item = {
   icon: JSX.Element
@@ -81,13 +82,21 @@ const getItems = ({ t }: { t: TFunction }): Item[] => [
 ]
 
 export default function Features() {
+  const { captureEvent } = useAnalytics()
   const { t } = useTranslation()
   const items = getItems({ t })
   const [selectedItemIndex, setSelectedItemIndex] = React.useState(0)
 
-  const handleItemClick = (index: number) => {
-    setSelectedItemIndex(index)
-  }
+  const handleItemClick = React.useCallback(
+    (index: number) => {
+      setSelectedItemIndex(index)
+      captureEvent({
+        action: "click",
+        options: { link_id: `feature_${index}` },
+      })
+    },
+    [captureEvent, setSelectedItemIndex]
+  )
 
   const selectedFeature = items[selectedItemIndex]
 

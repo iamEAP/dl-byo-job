@@ -42,5 +42,8 @@
   "faq_transit_question": "How well-connected is Dals Långed? Will I need a car to survive?",
   "faq_transit_answer": "<0>You'll find all of life's essentials readily available within walking distance in town (a grocery store, postal services, simple restaurants, etc). There is a direct (if infrequent) bus connection to Åmål, from which you can get anywhere else in Sweden via the rail network.</0><1>While there are some in town who are able to live comfortably without a personal vehicle, you may find it easier and more convenient to own a car for those occasional trips out of town. If you have a license but no car, there is also a local car share program you could take advantage of.</1>",
   "partners_title": "In partnership with",
-  "footer_copyright": "Copyright © {{year}}"
+  "footer_copyright": "Copyright © {{year}}",
+  "cookie_consent_message": "We use cookies to help measure the success of this page.",
+  "cookie_consent_accept": "Accept",
+  "cookie_consent_reject": "No Thanks"
 }
