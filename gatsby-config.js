@@ -4,6 +4,8 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
 
+const siteUrl = "https://byo-job.qa.eric.pe"
+
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
@@ -12,7 +14,7 @@ module.exports = {
     title: `Move to Dals Långed`,
     description: `The best place in Sweden to work from home.`,
     author: `Dals Långeds Life`,
-    siteUrl: `https://byoj.dalslangedslife.com/`,
+    siteUrl,
   },
   plugins: [
     `gatsby-plugin-image`,
@@ -37,6 +39,72 @@ module.exports = {
         // theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/FPO-favicon.png`, // This path is relative to the root of the site.
+      },
+    },
+    // SEO stuff below
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      sitemap: `${siteUrl}/sitemap-index.xml`,
+      options: {
+        policy: [{ userAgent: "*", disallow: "/" }],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-sitemap",
+      options: {
+        excludes: ["/**/404", "/**/404.html"],
+        resolveSiteUrl: () => siteUrl,
+        query: `
+        {
+          allSitePage {
+            edges {
+              node {
+                pageContext
+              }
+            }
+          }
+        }
+        `,
+        resolvePages: ({ allSitePage: { edges } }) => {
+          return edges
+            .filter(
+              ({ node }) =>
+                !["/404/", "/404.html"].includes(
+                  node.pageContext.i18n.originalPath
+                )
+            )
+            .map(({ node: { pageContext } }) => {
+              const { languages, originalPath, path, defaultLanguage } =
+                pageContext.i18n
+              const baseUrl = siteUrl + originalPath
+              const links = [{ lang: "x-default", url: baseUrl }]
+
+              languages.forEach(lang => {
+                const isDefaultLang = lang === defaultLanguage
+                const isDefaultPath = path === originalPath
+                const isLangSubDir = path.includes(`${lang}/`)
+
+                if (isDefaultLang && isDefaultPath) return
+                if (!isDefaultLang && isLangSubDir) return
+
+                links.push({
+                  lang,
+                  url: isDefaultLang
+                    ? baseUrl
+                    : `${siteUrl}/${lang}${originalPath}`,
+                })
+              })
+
+              return {
+                path,
+                url: path === "/" ? siteUrl : `${siteUrl}/${path}`,
+                changefreq: "daily",
+                priority: originalPath === "/" ? 1.0 : 0.7,
+                links,
+              }
+            })
+        },
+        serialize: page => page,
       },
     },
     // i18n stuff below
